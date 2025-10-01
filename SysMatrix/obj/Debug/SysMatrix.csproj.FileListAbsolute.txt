@@ -1,0 +1,9 @@
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\obj\Debug\SysMatrix.csproj.CoreCompileInputs.cache
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\bin\Debug\SysMatrix.exe.config
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\bin\Debug\SysMatrix.exe
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\bin\Debug\SysMatrix.pdb
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\bin\Debug\Newtonsoft.Json.dll
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\obj\Debug\SysMatrix.csproj.CopyComplete
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\obj\Debug\SysMatrix.exe
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\obj\Debug\SysMatrix.pdb
+C:\Users\admin\Source\Repos\SysMatrix\SysMatrix\obj\Debug\SysMatrix.csproj.AssemblyReference.cache

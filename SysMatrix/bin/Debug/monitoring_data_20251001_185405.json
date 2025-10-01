@@ -1,0 +1,173 @@
+{
+  "CollectionTimestamp": "2025-10-01T18:52:08.7638118+05:30",
+  "CpuMetrics": {
+    "ProcessorTimePercentage": 47.18,
+    "ProcessorQueueLength": 45.0,
+    "NumberOfCores": 4,
+    "QueueLengthPerCore": 11.25,
+    "AlertTriggered": false,
+    "AlertMessage": null
+  },
+  "MemoryMetrics": {
+    "AvailableMBytes": 5727.0,
+    "TotalMemoryMBytes": 16277.34,
+    "AvailableMemoryPercentage": 35.18,
+    "PagesPerSec": 0.0,
+    "AlertTriggered": false,
+    "AlertMessage": null
+  },
+  "DiskMetrics": {
+    "Disks": [
+      {
+        "DriveName": "C:\\",
+        "FreeSpacePercentage": 16.59,
+        "FreeMegabytes": 28098.74,
+        "TotalSizeMegabytes": 169364.0,
+        "AlertTriggered": false
+      },
+      {
+        "DriveName": "D:\\",
+        "FreeSpacePercentage": 74.7,
+        "FreeMegabytes": 54895.41,
+        "TotalSizeMegabytes": 73490.33,
+        "AlertTriggered": false
+      },
+      {
+        "DriveName": "E:\\",
+        "FreeSpacePercentage": 78.72,
+        "FreeMegabytes": 750882.26,
+        "TotalSizeMegabytes": 953867.0,
+        "AlertTriggered": false
+      },
+      {
+        "DriveName": "F:\\",
+        "FreeSpacePercentage": 91.0,
+        "FreeMegabytes": 721.63,
+        "TotalSizeMegabytes": 793.0,
+        "AlertTriggered": false
+      }
+    ],
+    "AlertTriggered": false,
+    "AlertMessage": null
+  },
+  "DiskIoMetrics": {
+    "Disks": [
+      {
+        "DiskName": "1 E:",
+        "AvgDiskSecRead": 0.0,
+        "AvgDiskSecWrite": 0.0,
+        "AvgDiskQueueLength": 0.0,
+        "AlertTriggered": false
+      },
+      {
+        "DiskName": "0 C: F: D:",
+        "AvgDiskSecRead": 0.0,
+        "AvgDiskSecWrite": 0.0,
+        "AvgDiskQueueLength": 0.0,
+        "AlertTriggered": false
+      }
+    ],
+    "AlertTriggered": false,
+    "AlertMessage": null
+  },
+  "NetworkMetrics": {
+    "Interfaces": [
+      {
+        "InterfaceName": "Realtek PCIe GbE Family Controller",
+        "BytesTotalPerSec": 8955.02,
+        "PacketsOutboundErrors": 0.0,
+        "PacketsReceivedErrors": 0.0,
+        "TotalPackets": 0.0,
+        "ErrorPercentage": 0.0,
+        "AlertTriggered": false
+      }
+    ],
+    "AlertTriggered": false,
+    "AlertMessage": null
+  },
+  "WebServerMetrics": {
+    "W3SvcServiceRunning": true,
+    "Port80Listening": true,
+    "Port443Listening": false,
+    "HealthProbeSuccessful": false,
+    "HealthProbeFailureCount": 1,
+    "HealthProbeResponseTimeMs": 0.0,
+    "TotalMethodRequestsPerSec": 0.0,
+    "CurrentConnections": 0.0,
+    "ConnectionAttemptsPerSec": 0.0,
+    "Error5xxCount": 10,
+    "TotalRequests": 1000,
+    "Error5xxPercentage": 1.0,
+    "ResponseTime95thPercentileMs": 0.0,
+    "AvailabilityAlertTriggered": false,
+    "PerformanceAlertTriggered": false,
+    "AlertMessage": null
+  },
+  "DatabaseMetrics": {
+    "UserConnections": 0,
+    "MaxConnections": 0,
+    "ConnectionUsagePercentage": 0.0,
+    "ConnectionResetPerSec": 0.0,
+    "LoginsPerSec": 0.0,
+    "ConnectionFailuresPerMinute": 0,
+    "BatchRequestsPerSec": 0.0,
+    "SqlCompilationsPerSec": 0.0,
+    "SlowQueryCount": 0,
+    "AvgQueryDurationMs": 0.0,
+    "QueryDuration95thPercentileMs": 0.0,
+    "LogFileUsedSizeKB": 0.0,
+    "LogFileTotalSizeKB": 0.0,
+    "LogFileUsagePercentage": 0.0,
+    "LastLogBackupTime": null,
+    "MinutesSinceLastLogBackup": 0.0,
+    "ConnectionAlertTriggered": false,
+    "QueryPerformanceAlertTriggered": false,
+    "TransactionLogAlertTriggered": false,
+    "AlertMessage": null,
+    "DatabaseAvailable": false,
+    "ErrorMessage": "SQL Server connection error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)"
+  },
+  "ServiceMetrics": {
+    "Services": [
+      {
+        "ServiceName": "W3SVC",
+        "DisplayName": "World Wide Web Publishing Service",
+        "IsRunning": true,
+        "Status": "Running",
+        "MonitoredPort": 80,
+        "PortListening": true,
+        "AlertTriggered": false
+      },
+      {
+        "ServiceName": "W3SVC",
+        "DisplayName": "World Wide Web Publishing Service (HTTPS)",
+        "IsRunning": true,
+        "Status": "Running",
+        "MonitoredPort": 443,
+        "PortListening": false,
+        "AlertTriggered": false
+      },
+      {
+        "ServiceName": "MSSQLSERVER",
+        "DisplayName": "SQL Server (MSSQLSERVER)",
+        "IsRunning": false,
+        "Status": "Stopped",
+        "MonitoredPort": 1433,
+        "PortListening": false,
+        "AlertTriggered": true
+      },
+      {
+        "ServiceName": "SQLSERVERAGENT",
+        "DisplayName": "SQL Server Agent (MSSQLSERVER)",
+        "IsRunning": false,
+        "Status": "Stopped",
+        "MonitoredPort": null,
+        "PortListening": null,
+        "AlertTriggered": true
+      }
+    ],
+    "AlertTriggered": true,
+    "AlertMessage": "Critical Service Availability Alert: The following services are not running and their corresponding ports are not responding: SQL Server (MSSQLSERVER) (MSSQLSERVER), SQL Server Agent (MSSQLSERVER) (SQLSERVERAGENT)"
+  },
+  "ErrorMessage": null
+}
