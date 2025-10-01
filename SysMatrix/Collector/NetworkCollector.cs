@@ -8,7 +8,6 @@ namespace SysMatrix.Collector
 {
     public class NetworkCollector
     {
-        private const double ERROR_PERCENTAGE_THRESHOLD = 1.0; // 1%
 
         public async Task<NetworkMetrics> CollectAsync()
         {
@@ -70,7 +69,7 @@ namespace SysMatrix.Collector
                                 interfaceInfo.ErrorPercentage = Math.Round((totalErrors / interfaceInfo.TotalPackets) * 100, 4);
 
                                 // Check alert conditions
-                                if (interfaceInfo.ErrorPercentage > ERROR_PERCENTAGE_THRESHOLD)
+                                if (interfaceInfo.ErrorPercentage > Constant.ERROR_PERCENTAGE_THRESHOLD)
                                 {
                                     interfaceInfo.AlertTriggered = true;
                                     metrics.AlertTriggered = true;
@@ -89,7 +88,7 @@ namespace SysMatrix.Collector
                     {
                         var alertedInterfaces = metrics.Interfaces.Where(i => i.AlertTriggered).Select(i => i.InterfaceName);
                         metrics.AlertMessage = $"Network Issues Alert: High packet error rate on interfaces: {string.Join(", ", alertedInterfaces)}. " +
-                                              $"Packet errors > {ERROR_PERCENTAGE_THRESHOLD}% of total packets";
+                                              $"Packet errors > {Constant.ERROR_PERCENTAGE_THRESHOLD}% of total packets";
                     }
                 }
                 catch (Exception ex)

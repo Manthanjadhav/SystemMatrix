@@ -11,10 +11,6 @@ namespace SysMatrix.Collector
 {
     public class WebServerCollector
     {
-        private const double ERROR_5XX_PERCENTAGE_THRESHOLD = 2.0; // 2%
-        private const double RESPONSE_TIME_THRESHOLD_MS = 2000.0; // 2 seconds
-        private const int HEALTH_PROBE_FAILURE_THRESHOLD = 3;
-
         public async Task<WebServerMetrics> CollectAsync()
         {
             return await Task.Run(() =>
@@ -48,20 +44,20 @@ namespace SysMatrix.Collector
                         metrics.AvailabilityAlertTriggered = true;
                         metrics.AlertMessage = "Web Server Availability Alert: W3SVC service not running and ports 80/443 not listening. ";
                     }
-                    else if (!metrics.HealthProbeSuccessful && metrics.HealthProbeFailureCount >= HEALTH_PROBE_FAILURE_THRESHOLD)
+                    else if (!metrics.HealthProbeSuccessful && metrics.HealthProbeFailureCount >= Constant.HEALTH_PROBE_FAILURE_THRESHOLD)
                     {
                         metrics.AvailabilityAlertTriggered = true;
                         metrics.AlertMessage += "Health probe failed 3 consecutive times. ";
                     }
 
                     // Check performance alert
-                    if (metrics.Error5xxPercentage > ERROR_5XX_PERCENTAGE_THRESHOLD &&
-                        metrics.ResponseTime95thPercentileMs > RESPONSE_TIME_THRESHOLD_MS)
+                    if (metrics.Error5xxPercentage > Constant.ERROR_5XX_PERCENTAGE_THRESHOLD &&
+                        metrics.ResponseTime95thPercentileMs > Constant.RESPONSE_TIME_THRESHOLD_MS)
                     {
                         metrics.PerformanceAlertTriggered = true;
                         metrics.AlertMessage += $"Web Server Performance Alert: 5xx errors at {metrics.Error5xxPercentage}% " +
-                                               $"(threshold: {ERROR_5XX_PERCENTAGE_THRESHOLD}%) and response time at " +
-                                               $"{metrics.ResponseTime95thPercentileMs}ms (threshold: {RESPONSE_TIME_THRESHOLD_MS}ms)";
+                                               $"(threshold: {Constant.ERROR_5XX_PERCENTAGE_THRESHOLD}%) and response time at " +
+                                               $"{metrics.ResponseTime95thPercentileMs}ms (threshold: {Constant.RESPONSE_TIME_THRESHOLD_MS}ms)";
                     }
                 }
                 catch (Exception ex)

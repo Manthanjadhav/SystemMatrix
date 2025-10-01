@@ -7,8 +7,7 @@ namespace SysMatrix.Collector
 {
     public class MemoryCollector
     {
-        private const double AVAILABLE_MEMORY_THRESHOLD = 10.0; // 10%
-        private const double PAGES_PER_SEC_THRESHOLD = 2000.0;
+
 
         public async Task<MemoryMetrics> CollectAsync()
         {
@@ -41,13 +40,13 @@ namespace SysMatrix.Collector
                         (metrics.AvailableMBytes / metrics.TotalMemoryMBytes) * 100, 2);
 
                     // Check alert conditions
-                    if (metrics.AvailableMemoryPercentage < AVAILABLE_MEMORY_THRESHOLD &&
-                        metrics.PagesPerSec > PAGES_PER_SEC_THRESHOLD)
+                    if (metrics.AvailableMemoryPercentage < Constant.AVAILABLE_MEMORY_THRESHOLD &&
+                        metrics.PagesPerSec > Constant.PAGES_PER_SEC_THRESHOLD)
                     {
                         metrics.AlertTriggered = true;
                         metrics.AlertMessage = $"Memory Pressure Alert: Available memory is {metrics.AvailableMemoryPercentage}% " +
-                                              $"(threshold: {AVAILABLE_MEMORY_THRESHOLD}%) and Pages/sec is {metrics.PagesPerSec} " +
-                                              $"(threshold: {PAGES_PER_SEC_THRESHOLD})";
+                                              $"(threshold: {Constant.AVAILABLE_MEMORY_THRESHOLD}%) and Pages/sec is {metrics.PagesPerSec} " +
+                                              $"(threshold: {Constant.PAGES_PER_SEC_THRESHOLD})";
                     }
                 }
                 catch (Exception ex)

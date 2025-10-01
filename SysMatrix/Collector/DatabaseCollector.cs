@@ -8,12 +8,6 @@ namespace SysMatrix.Collector
 {
     public class DatabaseCollector
     {
-        private const double CONNECTION_USAGE_THRESHOLD = 85.0; // 85%
-        private const int CONNECTION_FAILURES_THRESHOLD = 5; // 5 per minute
-        private const double AVG_QUERY_DURATION_THRESHOLD_MS = 2000.0; // 2 seconds
-        private const double LOG_FILE_USAGE_THRESHOLD = 85.0; // 85%
-        private const double LOG_BACKUP_THRESHOLD_MINUTES = 30.0;
-
         private string connectionString = "Server=localhost;Database=master;Integrated Security=true;Connection Timeout=5;";
 
         public async Task<DatabaseMetrics> CollectAsync()
@@ -244,31 +238,31 @@ namespace SysMatrix.Collector
         private void CheckAlerts(DatabaseMetrics metrics)
         {
             // Connection alert
-            if (metrics.ConnectionUsagePercentage > CONNECTION_USAGE_THRESHOLD &&
-                metrics.ConnectionFailuresPerMinute > CONNECTION_FAILURES_THRESHOLD)
+            if (metrics.ConnectionUsagePercentage > Constant.CONNECTION_USAGE_THRESHOLD &&
+                metrics.ConnectionFailuresPerMinute > Constant.CONNECTION_FAILURES_THRESHOLD)
             {
                 metrics.ConnectionAlertTriggered = true;
                 metrics.AlertMessage = $"Database Connection Alert: Connection usage at {metrics.ConnectionUsagePercentage}% " +
-                                      $"(threshold: {CONNECTION_USAGE_THRESHOLD}%) and {metrics.ConnectionFailuresPerMinute} " +
-                                      $"failures/min (threshold: {CONNECTION_FAILURES_THRESHOLD}). ";
+                                      $"(threshold: {Constant.CONNECTION_USAGE_THRESHOLD}%) and {metrics.ConnectionFailuresPerMinute} " +
+                                      $"failures/min (threshold: {Constant.CONNECTION_FAILURES_THRESHOLD}). ";
             }
 
             // Query performance alert
-            if (metrics.AvgQueryDurationMs > AVG_QUERY_DURATION_THRESHOLD_MS)
+            if (metrics.AvgQueryDurationMs > Constant.AVG_QUERY_DURATION_THRESHOLD_MS)
             {
                 metrics.QueryPerformanceAlertTriggered = true;
                 metrics.AlertMessage += $"Database Query Performance Alert: Average query duration at {metrics.AvgQueryDurationMs}ms " +
-                                       $"(threshold: {AVG_QUERY_DURATION_THRESHOLD_MS}ms). ";
+                                       $"(threshold: {Constant.AVG_QUERY_DURATION_THRESHOLD_MS}ms). ";
             }
 
             // Transaction log alert
-            if (metrics.LogFileUsagePercentage > LOG_FILE_USAGE_THRESHOLD &&
-                metrics.MinutesSinceLastLogBackup > LOG_BACKUP_THRESHOLD_MINUTES)
+            if (metrics.LogFileUsagePercentage > Constant.LOG_FILE_USAGE_THRESHOLD &&
+                metrics.MinutesSinceLastLogBackup > Constant.LOG_BACKUP_THRESHOLD_MINUTES)
             {
                 metrics.TransactionLogAlertTriggered = true;
                 metrics.AlertMessage += $"Transaction Log Alert: Log file usage at {metrics.LogFileUsagePercentage}% " +
-                                       $"(threshold: {LOG_FILE_USAGE_THRESHOLD}%) and {metrics.MinutesSinceLastLogBackup} minutes " +
-                                       $"since last backup (threshold: {LOG_BACKUP_THRESHOLD_MINUTES} minutes)";
+                                       $"(threshold: {Constant.LOG_FILE_USAGE_THRESHOLD}%) and {metrics.MinutesSinceLastLogBackup} minutes " +
+                                       $"since last backup (threshold: {Constant.LOG_BACKUP_THRESHOLD_MINUTES} minutes)";
             }
         }
     }

@@ -8,8 +8,6 @@ namespace SysMatrix.Collector
 {
     public class DiskIoCollector
     {
-        private const double DISK_SEC_THRESHOLD_MS = 25.0; // 25 milliseconds
-        private const double QUEUE_LENGTH_MULTIPLIER = 2.0;
 
         public async Task<DiskIoMetrics> CollectAsync()
         {
@@ -56,9 +54,9 @@ namespace SysMatrix.Collector
                             }
 
                             // Check alert conditions
-                            double queueThreshold = QUEUE_LENGTH_MULTIPLIER * numberOfCores;
-                            if ((diskIoInfo.AvgDiskSecRead > DISK_SEC_THRESHOLD_MS ||
-                                 diskIoInfo.AvgDiskSecWrite > DISK_SEC_THRESHOLD_MS) &&
+                            double queueThreshold = Constant.QUEUE_LENGTH_MULTIPLIER * numberOfCores;
+                            if ((diskIoInfo.AvgDiskSecRead > Constant.DISK_SEC_THRESHOLD_MS ||
+                                 diskIoInfo.AvgDiskSecWrite > Constant.DISK_SEC_THRESHOLD_MS) &&
                                 diskIoInfo.AvgDiskQueueLength > queueThreshold)
                             {
                                 diskIoInfo.AlertTriggered = true;
@@ -77,8 +75,8 @@ namespace SysMatrix.Collector
                     {
                         var alertedDisks = metrics.Disks.Where(d => d.AlertTriggered).Select(d => d.DiskName);
                         metrics.AlertMessage = $"Disk I/O Bottleneck Alert: High latency detected on disks: {string.Join(", ", alertedDisks)}. " +
-                                              $"Avg Disk sec/Read or sec/Write > {DISK_SEC_THRESHOLD_MS} ms AND " +
-                                              $"Avg Disk Queue Length > {QUEUE_LENGTH_MULTIPLIER} × cores";
+                                              $"Avg Disk sec/Read or sec/Write > {Constant.DISK_SEC_THRESHOLD_MS} ms AND " +
+                                              $"Avg Disk Queue Length > {Constant.QUEUE_LENGTH_MULTIPLIER} × cores";
                     }
                 }
                 catch (Exception ex)
