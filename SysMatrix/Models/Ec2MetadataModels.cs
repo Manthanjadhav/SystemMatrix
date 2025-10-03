@@ -17,8 +17,7 @@ namespace SysMatrix.Models
     public class InstanceBasicInfo
     {
         public string InstanceId { get; set; }
-        public string InstanceType { get; set; }
-        public string InstanceLifeCycle { get; set; }
+        public string InstanceType { get; set; } 
     }
 
     public class PlacementInfo

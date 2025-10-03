@@ -28,8 +28,7 @@ namespace SysMatrix.Collector
             {
                 // Instance Basic
                 metadata.InstanceBasic.InstanceId = await GetMetadataAsync("instance-id");
-                metadata.InstanceBasic.InstanceType = await GetMetadataAsync("instance-type");
-                metadata.InstanceBasic.InstanceLifeCycle = await GetMetadataAsync("instance-life-cycle");
+                metadata.InstanceBasic.InstanceType = await GetMetadataAsync("instance-type"); 
 
                 // Placement
                 metadata.Placement.AvailabilityZone = await GetMetadataAsync("placement/availability-zone");
