@@ -11,17 +11,18 @@ namespace SysMatrix
         {
             try
             {
+                var instanceData = InstanceInfoHelper.GetCurrentInstanceMetadata();
                 // Call the helper method to collect all monitoring data
-                var monitoringData = await MonitoringHelper.CollectAllMonitoringDataAsync();
+                //var monitoringData = await MonitoringHelper.CollectAllMonitoringDataAsync();
 
-                string jsonOutput = JsonConvert.SerializeObject(monitoringData, Formatting.Indented);
+                //string jsonOutput = JsonConvert.SerializeObject(monitoringData, Formatting.Indented);
 
-                Console.WriteLine(jsonOutput);
+                //Console.WriteLine(jsonOutput);
 
-                // Optionally save to file
-                string fileName = $"monitoring_data_{DateTime.Now:yyyyMMdd_HHmmss}.json";
-                System.IO.File.WriteAllText(fileName, jsonOutput);
-                Console.WriteLine($"\nData saved to: {fileName}");
+                //// Optionally save to file
+                //string fileName = $"monitoring_data_{DateTime.Now:yyyyMMdd_HHmmss}.json";
+                //System.IO.File.WriteAllText(fileName, jsonOutput);
+                //Console.WriteLine($"\nData saved to: {fileName}");
             }
             catch (Exception ex)
             {
