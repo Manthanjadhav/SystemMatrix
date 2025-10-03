@@ -8,33 +8,14 @@ namespace SysMatrix.Models
         public string ErrorMessage { get; set; }
         public DateTime CollectionTime { get; set; }
 
-        public InstanceBasicInfo InstanceBasic { get; set; }
-        public PlacementInfo Placement { get; set; }
-        public NetworkPrimaryInfo NetworkPrimary { get; set; }
-        public SystemInfo System { get; set; }
-    }
-
-    public class InstanceBasicInfo
-    {
+        // Flattened - all properties in single object
         public string InstanceId { get; set; }
-        public string InstanceType { get; set; } 
-    }
-
-    public class PlacementInfo
-    {
+        public string InstanceType { get; set; }
         public string AvailabilityZone { get; set; }
         public string Region { get; set; }
-    }
-
-    public class NetworkPrimaryInfo
-    {
         public string LocalIpv4 { get; set; }
         public string PublicHostname { get; set; }
         public string PublicIpv4 { get; set; }
-    }
-
-    public class SystemInfo
-    {
         public string Name { get; set; }
     }
 }

@@ -17,30 +17,19 @@ namespace SysMatrix.Collector
         {
             var metadata = new Ec2Metadata
             {
-                CollectionTime = DateTime.UtcNow,
-                InstanceBasic = new InstanceBasicInfo(),
-                Placement = new PlacementInfo(),
-                NetworkPrimary = new NetworkPrimaryInfo(),
-                System = new SystemInfo()
+                CollectionTime = DateTime.UtcNow
             };
 
             try
             {
-                // Instance Basic
-                metadata.InstanceBasic.InstanceId = await GetMetadataAsync("instance-id");
-                metadata.InstanceBasic.InstanceType = await GetMetadataAsync("instance-type"); 
-
-                // Placement
-                metadata.Placement.AvailabilityZone = await GetMetadataAsync("placement/availability-zone");
-                metadata.Placement.Region = await GetMetadataAsync("placement/region");
-
-                // Network Primary
-                metadata.NetworkPrimary.LocalIpv4 = await GetMetadataAsync("local-ipv4");
-                metadata.NetworkPrimary.PublicHostname = await GetMetadataAsync("public-hostname");
-                metadata.NetworkPrimary.PublicIpv4 = await GetMetadataAsync("public-ipv4");
-
-                // System
-                metadata.System.Name = await GetMetadataAsync("tags/instance/Name");
+                metadata.InstanceId = await GetMetadataAsync("instance-id");
+                metadata.InstanceType = await GetMetadataAsync("instance-type");
+                metadata.AvailabilityZone = await GetMetadataAsync("placement/availability-zone");
+                metadata.Region = await GetMetadataAsync("placement/region");
+                metadata.LocalIpv4 = await GetMetadataAsync("local-ipv4");
+                metadata.PublicHostname = await GetMetadataAsync("public-hostname");
+                metadata.PublicIpv4 = await GetMetadataAsync("public-ipv4");
+                metadata.Name = await GetMetadataAsync("tags/instance/Name");
 
                 metadata.IsSuccess = true;
             }
