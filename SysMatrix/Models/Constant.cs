@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,5 +22,7 @@ namespace SysMatrix.Models
         public const double ERROR_5XX_PERCENTAGE_THRESHOLD = 2.0; // 2%
         public const double RESPONSE_TIME_THRESHOLD_MS = 2000.0; // 2 seconds
         public const int HEALTH_PROBE_FAILURE_THRESHOLD = 3;
+        public static string METADATA_URL = ConfigurationManager.AppSettings["METADATA_URL"]!= null ? ConfigurationManager.AppSettings["METADATA_URL"].ToString() : "URL";
+        public static string DYNAMIC_URL = ConfigurationManager.AppSettings["DYNAMIC_URL"] != null ? ConfigurationManager.AppSettings["DYNAMIC_URL"].ToString() : "URL";
     }
 }
