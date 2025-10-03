@@ -8,17 +8,13 @@ using System.Linq;
 namespace SysMatrix.Collector
 {
     public class CpuCollector
-    {
-        private const double CPU_THRESHOLD = 90.0;
-        private const double QUEUE_LENGTH_MULTIPLIER = 2.0;
+    {  
         private readonly Queue<double> _cpuReadings = new Queue<double>();
-        private readonly object _lockObject = new object();
-        private const int SAMPLE_INTERVAL_MS = 10000;
-        private const int MAX_SAMPLES = 30;
+        private readonly object _lockObject = new object(); 
         /// <summary>
         /// Make _isInitialized false for mesuraing the cpu matrix for 5Min
         /// </summary>
-        private bool _isInitialized = false;
+        private bool _isInitialized = true;
 
         public async Task<CpuMetrics> CollectAsync()
         {
@@ -34,7 +30,7 @@ namespace SysMatrix.Collector
                 {
                     Console.WriteLine("First run: Collecting 5 minutes of CPU baseline data...");
 
-                    for (int i = 0; i < MAX_SAMPLES; i++)
+                    for (int i = 0; i < Constant.MAX_SAMPLES; i++)
                     {
                         double cpuReading;
                         using (var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total"))
@@ -49,11 +45,11 @@ namespace SysMatrix.Collector
                             _cpuReadings.Enqueue(cpuReading);
                         }
 
-                        Console.WriteLine($"Sample {i + 1}/{MAX_SAMPLES} collected... : " + cpuReading);
+                        Console.WriteLine($"Sample {i + 1}/{Constant.MAX_SAMPLES} collected... : " + cpuReading);
 
-                        if (i < MAX_SAMPLES - 1)
+                        if (i < Constant.MAX_SAMPLES - 1)
                         {
-                            await Task.Delay(SAMPLE_INTERVAL_MS); // Wait 10 seconds
+                            await Task.Delay(Constant.SAMPLE_INTERVAL_MS); // Wait 10 seconds
                         }
                     }
 
@@ -75,7 +71,7 @@ namespace SysMatrix.Collector
                     {
                         _cpuReadings.Enqueue(currentCpuUsage);
 
-                        while (_cpuReadings.Count > MAX_SAMPLES)
+                        while (_cpuReadings.Count > Constant.MAX_SAMPLES)
                         {
                             _cpuReadings.Dequeue();
                         }
@@ -97,13 +93,13 @@ namespace SysMatrix.Collector
                 metrics.QueueLengthPerCore = Math.Round(metrics.ProcessorQueueLength / metrics.NumberOfCores, 2);
 
                 // Check alert conditions
-                if (metrics.ProcessorTimePercentage > CPU_THRESHOLD &&
-                    metrics.QueueLengthPerCore > QUEUE_LENGTH_MULTIPLIER)
+                if (metrics.ProcessorTimePercentage > Constant.CPU_THRESHOLD &&
+                    metrics.QueueLengthPerCore > Constant.QUEUE_LENGTH_MULTIPLIER)
                 {
                     metrics.AlertTriggered = true;
                     metrics.AlertMessage = $"CPU Pressure Alert: CPU usage (5-min avg) is {metrics.ProcessorTimePercentage}% " +
-                                          $"(threshold: {CPU_THRESHOLD}%) and Queue Length per Core is " +
-                                          $"{metrics.QueueLengthPerCore} (threshold: {QUEUE_LENGTH_MULTIPLIER})";
+                                          $"(threshold: {Constant.CPU_THRESHOLD}%) and Queue Length per Core is " +
+                                          $"{metrics.QueueLengthPerCore} (threshold: {Constant.QUEUE_LENGTH_MULTIPLIER})";
                 }
             }
             catch (Exception ex)

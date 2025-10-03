@@ -18,12 +18,7 @@ namespace SysMatrix.Helpers
         public async Task<string> CollectAndReturnJsonAsync()
         {
             try
-            {
-                Console.WriteLine("========================================");
-                Console.WriteLine("   EC2 Metadata Collection Started");
-                Console.WriteLine("========================================\n");
-
-                // Call collector to gather all data
+            {  
                 Console.WriteLine("Collecting EC2 metadata from instance...\n");
                 var metadata = await _collector.CollectAsync();
 
@@ -39,10 +34,8 @@ namespace SysMatrix.Helpers
                     string json = JsonConvert.SerializeObject(metadata, jsonSettings);
 
                     // Print to console
-                    Console.WriteLine("EC2 METADATA (JSON):");
-                    Console.WriteLine("========================================");
-                    Console.WriteLine(json);
-                    Console.WriteLine("========================================\n");
+                    Console.WriteLine("EC2 METADATA (JSON):"); 
+                    Console.WriteLine(json); 
 
                     // Save to file
                     string filename = $"ec2-metadata-{DateTime.Now:yyyyMMdd-HHmmss}.json";

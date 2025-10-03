@@ -22,6 +22,9 @@ namespace SysMatrix.Models
         public const double ERROR_5XX_PERCENTAGE_THRESHOLD = 2.0; // 2%
         public const double RESPONSE_TIME_THRESHOLD_MS = 2000.0; // 2 seconds
         public const int HEALTH_PROBE_FAILURE_THRESHOLD = 3;
+        public const int SAMPLE_INTERVAL_MS = 10000;
+        public const double CPU_THRESHOLD = 90.0;
+        public const int MAX_SAMPLES = 30;
         public static string METADATA_URL = ConfigurationManager.AppSettings["METADATA_URL"]!= null ? ConfigurationManager.AppSettings["METADATA_URL"].ToString() : "URL";
         public static string TOKEN_URL = ConfigurationManager.AppSettings["TOKEN_URL"] != null ? ConfigurationManager.AppSettings["TOKEN_URL"].ToString() : "URL";
         public static string DBConnectionString =  ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString; 
