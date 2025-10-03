@@ -15,7 +15,9 @@ namespace SysMatrix.Collector
         private readonly object _lockObject = new object();
         private const int SAMPLE_INTERVAL_MS = 10000;
         private const int MAX_SAMPLES = 30;
-
+        /// <summary>
+        /// Make _isInitialized false for mesuraing the cpu matrix for 5Min
+        /// </summary>
         private bool _isInitialized = false;
 
         public async Task<CpuMetrics> CollectAsync()

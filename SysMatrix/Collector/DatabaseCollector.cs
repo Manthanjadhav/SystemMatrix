@@ -7,9 +7,7 @@ using SysMatrix.Models;
 namespace SysMatrix.Collector
 {
     public class DatabaseCollector
-    {
-        private string connectionString = "Server=localhost;Database=master;Integrated Security=true;Connection Timeout=5;";
-
+    {  
         public async Task<DatabaseMetrics> CollectAsync()
         {
             return await Task.Run(() =>
@@ -19,7 +17,7 @@ namespace SysMatrix.Collector
                 try
                 {
                     // First check if SQL Server is available
-                    using (var connection = new SqlConnection(connectionString))
+                    using (var connection = new SqlConnection(Constant.DBConnectionString))
                     {
                         connection.Open();
                         metrics.DatabaseAvailable = true;
