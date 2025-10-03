@@ -23,7 +23,7 @@ namespace SysMatrix.Models
         public const double RESPONSE_TIME_THRESHOLD_MS = 2000.0; // 2 seconds
         public const int HEALTH_PROBE_FAILURE_THRESHOLD = 3;
         public static string METADATA_URL = ConfigurationManager.AppSettings["METADATA_URL"]!= null ? ConfigurationManager.AppSettings["METADATA_URL"].ToString() : "URL";
-        public static string DYNAMIC_URL = ConfigurationManager.AppSettings["DYNAMIC_URL"] != null ? ConfigurationManager.AppSettings["DYNAMIC_URL"].ToString() : "URL";
+        public static string TOKEN_URL = ConfigurationManager.AppSettings["TOKEN_URL"] != null ? ConfigurationManager.AppSettings["TOKEN_URL"].ToString() : "URL";
         public static string DBConnectionString =  ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString; 
     }
 }
