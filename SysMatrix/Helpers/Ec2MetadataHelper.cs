@@ -47,10 +47,7 @@ namespace SysMatrix.Helpers
                     // Save to file
                     string filename = $"ec2-metadata-{DateTime.Now:yyyyMMdd-HHmmss}.json";
                     System.IO.File.WriteAllText(filename, json);
-                    Console.WriteLine($"✓ Data saved to: {filename}\n");
-
-                    // Print summary
-                    PrintSummary(metadata);
+                    Console.WriteLine($"✓ Data saved to: {filename}\n"); 
 
                     return json;
                 }
@@ -68,25 +65,6 @@ namespace SysMatrix.Helpers
                 Console.WriteLine($"Stack Trace: {ex.StackTrace}");
                 return errorMessage;
             }
-        }
-
-        private void PrintSummary(Ec2Metadata metadata)
-        {
-            Console.WriteLine("========================================");
-            Console.WriteLine("           SUMMARY");
-            Console.WriteLine("========================================");
-            Console.WriteLine($"Instance ID:       {metadata.InstanceBasic?.InstanceId}");
-            Console.WriteLine($"Instance Type:     {metadata.InstanceBasic?.InstanceType}");
-            Console.WriteLine($"Lifecycle:         {metadata.InstanceBasic?.InstanceLifeCycle}");
-            Console.WriteLine($"Region:            {metadata.Placement?.Region}");
-            Console.WriteLine($"Availability Zone: {metadata.Placement?.AvailabilityZone}");
-            Console.WriteLine($"Public IP:         {metadata.NetworkPrimary?.PublicIpv4}");
-            Console.WriteLine($"Private IP:        {metadata.NetworkPrimary?.LocalIpv4}");
-            Console.WriteLine($"AMI ID:            {metadata.Ami?.AmiId}");
-            Console.WriteLine($"Security Groups:   {metadata.Security?.SecurityGroups}");
-            Console.WriteLine($"Network Interfaces: {metadata.NetworkInterfaces?.Count}");
-            Console.WriteLine($"Collection Time:   {metadata.CollectionTime:yyyy-MM-dd HH:mm:ss} UTC");
-            Console.WriteLine("========================================");
-        }
+        } 
     }
 }
